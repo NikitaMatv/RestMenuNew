@@ -100,7 +100,7 @@ namespace RestWaiter.Pages
             LvTable.ItemsSource = App.DB.Order.Where(x => x.Tables.EmployeeID == App.LoggedEmployee.ID  && x.DataTimeEnd == null && x.DateTimesSt < DateTime.Now).ToList();
             LvTable.SelectedIndex = selectind;
             contsOrd = LvTable.SelectedItem as Order;
-            if (contsOrd.ID != 0)
+            if (contsOrd != null)
             {
                 LbCart.ItemsSource = App.DB.Order_Meal.Where(x => x.OrderID == contsOrd.ID).ToList();
             }
