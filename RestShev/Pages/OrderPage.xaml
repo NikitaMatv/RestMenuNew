@@ -51,6 +51,9 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock FontSize="18" Text="{Binding Count,StringFormat='Колличество: {0}'}"></TextBlock>
                                 </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="0 0 0 0" FontSize="18" HorizontalAlignment="Center" Text="{Binding Order.Funktoin.Name}"></TextBlock>
+                                </StackPanel>
                             </StackPanel>
                             <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Orientation="Vertical" Margin="5" Grid.ColumnSpan="3">
                                 <StackPanel Orientation="Horizontal">
@@ -62,7 +65,11 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock FontSize="18" Text="{Binding Order.Options.Name}"></TextBlock>
                                 </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="18"></TextBlock>
+                                </StackPanel>
                             </StackPanel>
+                            
                         </Grid>
                     </Border>
                 </DataTemplate>

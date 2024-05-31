@@ -66,6 +66,7 @@
           <Property Name="Password" Type="nvarchar" MaxLength="50" />
           <Property Name="Email" Type="nvarchar" MaxLength="200" />
           <Property Name="IsDismissed" Type="bit" />
+          <Property Name="DateSt" Type="datetime" />
         </EntityType>
         <EntityType Name="EmployeeRole">
           <Key>
@@ -74,6 +75,13 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="Salary" Type="int" />
+        </EntityType>
+        <EntityType Name="Funktoin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="Ingridient">
           <Key>
@@ -128,6 +136,7 @@
           <Property Name="DiscountId" Type="int" />
           <Property Name="DiscountPrice" Type="int" />
           <Property Name="CustomerId" Type="int" />
+          <Property Name="FunktionId" Type="int" />
         </EntityType>
         <EntityType Name="Order_Meal">
           <Key>
@@ -333,6 +342,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Order_Funktoin">
+          <End Role="Funktoin" Type="Self.Funktoin" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Funktoin">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="FunktionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Order_Meal_Meal">
           <End Role="Meal" Type="Self.Meal" Multiplicity="0..1" />
           <End Role="Order_Meal" Type="Self.Order_Meal" Multiplicity="*" />
@@ -449,6 +470,7 @@
           <EntitySet Name="DiscountCode" EntityType="Self.DiscountCode" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmployeeRole" EntityType="Self.EmployeeRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Funktoin" EntityType="Self.Funktoin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ingridient" EntityType="Self.Ingridient" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Meal" EntityType="Self.Meal" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Meal_Ingridient" EntityType="Self.Meal_Ingridient" Schema="dbo" store:Type="Tables" />
@@ -507,6 +529,10 @@
             <End Role="DiscountCode" EntitySet="DiscountCode" />
             <End Role="Order" EntitySet="Order" />
           </AssociationSet>
+          <AssociationSet Name="FK_Order_Funktoin" Association="Self.FK_Order_Funktoin">
+            <End Role="Funktoin" EntitySet="Funktoin" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
           <AssociationSet Name="FK_Order_Meal_Meal" Association="Self.FK_Order_Meal_Meal">
             <End Role="Meal" EntitySet="Meal" />
             <End Role="Order_Meal" EntitySet="Order_Meal" />
@@ -556,6 +582,7 @@
           <EntitySet Name="DiscountCode" EntityType="RestarauntDeliveryModel.DiscountCode" />
           <EntitySet Name="Employee" EntityType="RestarauntDeliveryModel.Employee" />
           <EntitySet Name="EmployeeRole" EntityType="RestarauntDeliveryModel.EmployeeRole" />
+          <EntitySet Name="Funktoin" EntityType="RestarauntDeliveryModel.Funktoin" />
           <EntitySet Name="Ingridient" EntityType="RestarauntDeliveryModel.Ingridient" />
           <EntitySet Name="Meal" EntityType="RestarauntDeliveryModel.Meal" />
           <EntitySet Name="Meal_Ingridient" EntityType="RestarauntDeliveryModel.Meal_Ingridient" />
@@ -605,6 +632,10 @@
           <AssociationSet Name="FK_Tables_Employee" Association="RestarauntDeliveryModel.FK_Tables_Employee">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="Tables" EntitySet="Tables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Funktoin" Association="RestarauntDeliveryModel.FK_Order_Funktoin">
+            <End Role="Funktoin" EntitySet="Funktoin" />
+            <End Role="Order" EntitySet="Order" />
           </AssociationSet>
           <AssociationSet Name="FK_Meal_Ingridient_Ingridient" Association="RestarauntDeliveryModel.FK_Meal_Ingridient_Ingridient">
             <End Role="Ingridient" EntitySet="Ingridient" />
@@ -720,6 +751,7 @@
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="IsDismissed" Type="Boolean" />
+          <Property Name="DateSt" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Deliverer" Relationship="RestarauntDeliveryModel.FK_Deliverer_Employee" FromRole="Employee" ToRole="Deliverer" />
           <NavigationProperty Name="Delivery" Relationship="RestarauntDeliveryModel.FK_Delivery_Employee" FromRole="Employee" ToRole="Delivery" />
           <NavigationProperty Name="EmployeeRole" Relationship="RestarauntDeliveryModel.FK_Employee_EmployeeRole" FromRole="Employee" ToRole="EmployeeRole" />
@@ -733,6 +765,14 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Salary" Type="Int32" />
           <NavigationProperty Name="Employee" Relationship="RestarauntDeliveryModel.FK_Employee_EmployeeRole" FromRole="EmployeeRole" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Funktoin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Order" Relationship="RestarauntDeliveryModel.FK_Order_Funktoin" FromRole="Funktoin" ToRole="Order" />
         </EntityType>
         <EntityType Name="Ingridient">
           <Key>
@@ -796,9 +836,11 @@
           <Property Name="DiscountId" Type="Int32" />
           <Property Name="DiscountPrice" Type="Int32" />
           <Property Name="CustomerId" Type="Int32" />
+          <Property Name="FunktionId" Type="Int32" />
           <NavigationProperty Name="Customer" Relationship="RestarauntDeliveryModel.FK_Order_Customer" FromRole="Order" ToRole="Customer" />
           <NavigationProperty Name="Delivery" Relationship="RestarauntDeliveryModel.FK_Delivery_Order" FromRole="Order" ToRole="Delivery" />
           <NavigationProperty Name="DiscountCode" Relationship="RestarauntDeliveryModel.FK_Order_DiscountCode" FromRole="Order" ToRole="DiscountCode" />
+          <NavigationProperty Name="Funktoin" Relationship="RestarauntDeliveryModel.FK_Order_Funktoin" FromRole="Order" ToRole="Funktoin" />
           <NavigationProperty Name="Options" Relationship="RestarauntDeliveryModel.FK_Order_Options" FromRole="Order" ToRole="Options" />
           <NavigationProperty Name="Order_Meal" Relationship="RestarauntDeliveryModel.FK_Order_Meal_Order" FromRole="Order" ToRole="Order_Meal" />
           <NavigationProperty Name="StatusOrder" Relationship="RestarauntDeliveryModel.FK_Order_StatusOrder" FromRole="Order" ToRole="StatusOrder" />
@@ -995,6 +1037,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Order_Funktoin">
+          <End Type="RestarauntDeliveryModel.Funktoin" Role="Funktoin" Multiplicity="0..1" />
+          <End Type="RestarauntDeliveryModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Funktoin">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="FunktionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Meal_Ingridient_Ingridient">
           <End Type="RestarauntDeliveryModel.Ingridient" Role="Ingridient" Multiplicity="0..1" />
           <End Type="RestarauntDeliveryModel.Meal_Ingridient" Role="Meal_Ingridient" Multiplicity="*" />
@@ -1188,6 +1242,7 @@
           <EntitySetMapping Name="Employee">
             <EntityTypeMapping TypeName="RestarauntDeliveryModel.Employee">
               <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="DateSt" ColumnName="DateSt" />
                 <ScalarProperty Name="IsDismissed" ColumnName="IsDismissed" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
@@ -1207,6 +1262,14 @@
                 <ScalarProperty Name="Salary" ColumnName="Salary" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Funktoin">
+            <EntityTypeMapping TypeName="RestarauntDeliveryModel.Funktoin">
+              <MappingFragment StoreEntitySet="Funktoin">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1254,6 +1317,7 @@
           <EntitySetMapping Name="Order">
             <EntityTypeMapping TypeName="RestarauntDeliveryModel.Order">
               <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="FunktionId" ColumnName="FunktionId" />
                 <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="DiscountPrice" ColumnName="DiscountPrice" />
                 <ScalarProperty Name="DiscountId" ColumnName="DiscountId" />

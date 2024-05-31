@@ -9,17 +9,17 @@
 //------------------------------------------------------------------------------
 
 
-namespace RestShev.Components
+namespace RestWaiter.Components
 {
 
 using System;
     using System.Collections.Generic;
     
-public partial class Tables
+public partial class Funktoin
 {
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public Tables()
+    public Funktoin()
     {
 
         this.Order = new HashSet<Order>();
@@ -29,13 +29,9 @@ public partial class Tables
 
     public int Id { get; set; }
 
-    public Nullable<int> NumberOfSeats { get; set; }
-
-    public Nullable<int> EmployeeID { get; set; }
+    public string Name { get; set; }
 
 
-
-    public virtual Employee Employee { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 

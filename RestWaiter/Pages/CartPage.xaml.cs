@@ -181,13 +181,35 @@ namespace RestWaiter.Pages
 
         private void BtCompl_Click(object sender, RoutedEventArgs e)
         {
+
             IEnumerable<Order_Meal> products = App.DB.Order_Meal.Where(x => x.OrderID == contsOrd.ID).ToList();
+            if(products.Count() == 0)
+            {
+                MessageBox.Show("Закакз пуст.");
+                return;
+            }
+            if(products.FirstOrDefault(x=>x.StatusId == 1) == null)
+            {
+                MessageBox.Show("Все блюда уже подтверждены.");
+                return;
+            }
             foreach (var items in products)
             {
                 items.StatusId = 2;
 
             }
             contsOrd.StatusID = 2;
+
+            MessageBoxResult result = MessageBox.Show($"Выносить по готовности?", "Подтверждение.", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                contsOrd.FunktionId = 1;
+            }
+            else
+            {
+                contsOrd.FunktionId = 2;
+            }
             App.DB.SaveChanges();
             Update();
         }

@@ -116,6 +116,9 @@
     <Compile Include="Components\EmployeeRole.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Components\Funktoin.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Components\Ingridient.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
