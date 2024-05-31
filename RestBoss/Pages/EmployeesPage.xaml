@@ -1,0 +1,79 @@
+﻿<Page x:Class="RestBoss.Pages.EmployeesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RestBoss.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="700" d:DesignWidth="1000"
+      Title="EmployeesPage">
+
+    <Grid Background="#D9D9D9">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Margin="-110 2 0 0" HorizontalAlignment="Center"  Orientation="Horizontal" >
+            <Button Style="{StaticResource MaterialDesignFlatDarkButton}" x:Name="BtEmployees" BorderBrush="Transparent"  Height="45" Padding="10" Margin="3 0 3 0"  Click="BtEmployees_Click">
+                <TextBlock  Foreground="Black" TextDecorations="Underline" FontStyle="Oblique" FontSize="20" FontFamily="Arial">Назад</TextBlock>
+            </Button>
+            <Button Style="{StaticResource MaterialDesignFlatDarkButton}" x:Name="BtDismissed" BorderBrush="Transparent" Height="45" Padding="10" Margin="3 0 3 0"   Click="BtDismissed_Click">
+                <TextBlock Foreground="Black" TextDecorations="Underline" FontStyle="Oblique" FontSize="20" FontFamily="Arial">Архив сотрудников</TextBlock>
+            </Button>
+            <Image Source="/Resources/Logo.png" />
+            <Button Style="{StaticResource MaterialDesignFlatDarkButton}" x:Name="BtChief"  BorderBrush="Transparent" Height="45" Padding="10" Margin="3 0 3 0"   Click="BtChief_Click">
+                <TextBlock Foreground="Black" TextDecorations="Underline" FontStyle="Oblique" FontSize="20" FontFamily="Arial">Предложения шефа</TextBlock>
+            </Button>
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+            <TextBox Opacity="0.6"   x:Name="TbSearch" materialDesign:HintAssist.Hint="Поиск" materialDesign:TextFieldAssist.HasClearButton="True" TextChanged="TbSearch_TextChanged"  Padding="10 -5 10 0" VerticalContentAlignment="Center" FontSize="20"  Width="290" Height="25" ></TextBox>
+        </StackPanel>
+        <ListBox Grid.Row="2" VerticalAlignment="Top" x:Name="LBEmployee" Background="#686868"  HorizontalContentAlignment="Stretch" AlternationCount="2" Height="615">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border Background="#D9D9D9" Width="900" Height="100" Margin="0 10 0 0" BorderThickness="2" CornerRadius="10">
+                        <Border.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Добавить" x:Name="EmployeeAdd" Background="LightGreen" Click="EmployeeAdd_Click"></MenuItem>
+                                <MenuItem Header="Редактировать" x:Name="Redact" Background="LightGoldenrodYellow" Click="Redact_Click"></MenuItem>
+                                <MenuItem Header="Уволить" x:Name="EmployeeFire" Background="IndianRed" Click="EmployeeFire_Click"></MenuItem>
+                            </ContextMenu>
+                        </Border.ContextMenu>
+                        <Grid Width="700" Margin="10 0 0 0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="450"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <StackPanel  Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Orientation="Horizontal">
+                                <TextBlock Padding="3" FontSize="20" FontWeight="Bold" Text="{Binding EmployeeRole.Name}"></TextBlock>
+                                <TextBlock Padding="0 3 0 0" FontSize="20" FontWeight="Bold" Text=":"></TextBlock>
+                                <TextBlock Padding="3 3 0 0" FontSize="20" Text="{Binding Name}" Margin="0 0 10 0"></TextBlock>
+                                <TextBlock Padding="0 3 0 0" FontSize="20" Text="{Binding Surname}" Margin="0 0 10 0"></TextBlock>
+                                <TextBlock Padding="0 3 0 0" FontSize="20" Text="{Binding Patronymic}" Margin="0 0 10 0"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Margin="0 0 0 0" Grid.Column="1" Orientation="Horizontal">
+                                <TextBlock Padding="3" FontSize="25" FontWeight="Bold"  Text="Телефон: "></TextBlock>
+                                <TextBlock  Padding="3" FontSize="25"  TextWrapping="Wrap" Width="370" Text="{Binding PhoneNumber}"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Margin="0 0 0 0" Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
+                                <TextBlock Padding="3" FontSize="25" FontWeight="Bold"  Text="Стаж: "></TextBlock>
+                                <TextBlock Padding="0 3 0 0" FontSize="25" Text="{Binding staj,StringFormat='dd'}" Margin="0 0 10 0"></TextBlock>
+                                <TextBlock Padding="3" FontSize="25"  Text="д. "></TextBlock>
+                            </StackPanel>
+                            <StackPanel Margin="3" Grid.Row="1" Orientation="Horizontal">
+                                <TextBlock Padding="3" FontSize="20" FontWeight="Bold"  Text="Email: "></TextBlock>
+                                <TextBlock Padding="3" FontSize="20" Text="{Binding Email}" Margin="0 0 10 0"></TextBlock>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</Page>

@@ -1,0 +1,47 @@
+﻿<Page x:Class="RestWaiter.Pages.LoginPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RestWaiter.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="700" d:DesignWidth="1000"
+      Title="LoginPage">
+
+    <Grid>
+        <Image Source="/Resources/Background.png" Margin="0,0,20,-0" />
+
+
+        <Polygon Fill="Gray" Points="1000, 0, 700, 0, 400, 800, 1000, 800"/>
+        <Image Source="/Resources/Logo.png" Margin="705,2,5,504" />
+        <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Right"  Margin="0 100 100 0" MaxWidth="500">
+            <TextBox
+                FontStyle="Italic"
+                FontSize="20"
+                x:Name="LoginTb"
+                Width="250"
+                VerticalAlignment="Center"
+                materialDesign:HintAssist.Hint="Логин"
+                Margin="0 0 0 60"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            <PasswordBox
+                FontStyle="Italic"
+                FontSize="20"
+                x:Name="PasswordTb"
+                materialDesign:HintAssist.Hint="Пароль"
+                materialDesign:TextFieldAssist.HasClearButton="True"
+                Margin="0 0 0 0"
+                Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
+            <Button
+                Click="AutorBt_Click"
+                Height="35"
+                FontStyle="Italic"
+                FontSize="20"
+                Margin="0 100 0 0"
+                Content="Войти"
+                Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                ToolTip="Войти в аккаунт"/>
+        </StackPanel>
+    </Grid>
+</Page>

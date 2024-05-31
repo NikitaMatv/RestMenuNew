@@ -1,0 +1,94 @@
+﻿<Page x:Class="RestHostes.Pages.CrateOrder_TablePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RestHostes.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="700" d:DesignWidth="1000"
+      Title="CrateOrder_TablePage">
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Resources/imageBack.png"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="65"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Border Background="#D9D9D9"  BorderThickness="3" CornerRadius="10" Width="300" Height="350"  VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel VerticalAlignment="Center">
+                <Image Source="{Binding Images}" Width="200" Height="200"></Image>
+                <TextBlock FontSize="18" Text="{Binding Id ,StringFormat='Номер стола {0}'}" TextAlignment="Center"></TextBlock>
+                <TextBlock FontSize="18"  Text="{Binding NumberOfSeats ,StringFormat='Мест за столом {0}'}" TextAlignment="Center"></TextBlock>
+                <TextBlock  FontSize="18" x:Name="TbName" TextAlignment="Center"></TextBlock>
+            </StackPanel>
+        </Border>
+        <Grid Grid.Column="1" Grid.Row="0" Background="LightGray">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"></RowDefinition>
+                <RowDefinition Height="10*"></RowDefinition>
+                <RowDefinition Height="13*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Background="LightGray" Width="484"> <!--ПОИСК-->
+                <TextBox materialDesign:HintAssist.Hint="Поиск" materialDesign:HintAssist.Foreground="Black"  x:Name="TbSearch" TextChanged="TbSearch_TextChanged" Style="{StaticResource MaterialDesignFloatingHintTextBox}"  
+                         Padding="10 -5 10 0" VerticalContentAlignment="Center" FontSize="20"  materialDesign:TextFieldAssist.HasClearButton="True" Width="485" Height="56" />
+            </StackPanel>
+            <ListBox VerticalAlignment="Top"   x:Name="LbCustomer" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Hidden" materialDesign:ScrollViewerAssist.ShowSeparators="True" ScrollViewer.VerticalScrollBarVisibility="Hidden" HorizontalContentAlignment="Stretch" AlternationCount="2" Height="230" Margin="50,0,50,0" d:ItemsSource="{d:SampleData ItemCount=5}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border  Background="#D9D9D9" Width="390" Height="100" BorderThickness="2" CornerRadius="10">
+                            <Border.BitmapEffect>
+                                <DropShadowBitmapEffect></DropShadowBitmapEffect>
+                            </Border.BitmapEffect>
+                            <Border.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Выбрать клиента" x:Name="BtAddInOrder" Click="BtAddInOrder_Click"></MenuItem>
+                                </ContextMenu>
+                            </Border.ContextMenu>
+                            <StackPanel>
+                                <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 0 0">
+                                    <TextBlock Padding="3" FontSize="18" Text="{Binding FirstName,StringFormat='Имя {0}'}"></TextBlock>
+                                    <TextBlock  FontSize="18"  TextWrapping="Wrap" Text="{Binding SurName,StringFormat='Фамилия {0}'}"></TextBlock>
+                                    <TextBlock  FontSize="18"  TextWrapping="Wrap" Text="{Binding PhoneNumber,StringFormat='Номер телефона {0}'}"></TextBlock>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Border Background="#D9D9D9" Grid.Row="2" CornerRadius="20" Height="266" VerticalAlignment="Center" Margin="100,0,100,0" >
+                <Border.BitmapEffect>
+                    <DropShadowBitmapEffect Direction="-90"/>
+                </Border.BitmapEffect>
+                <StackPanel x:Name="SpCustomer" HorizontalAlignment="Center" VerticalAlignment="Center" Height="300">
+                    <StackPanel Margin="0 50 0 20" Width="265">
+                        <TextBox x:Name="TbNames"  materialDesign:HintAssist.Hint="Имя" materialDesign:HintAssist.Foreground="Black" FontSize="16"  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                Margin="10 0 10 0" Text="{Binding FirstName}" />
+                        <TextBox  x:Name="TbSNames"   materialDesign:HintAssist.Hint="Фамилия" materialDesign:HintAssist.Foreground="Black" FontSize="16"   Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                   Margin="10 0 10 0" Text="{Binding SurName}"/>
+                        <TextBox x:Name="TbPhone"  materialDesign:HintAssist.Hint="Телефон" materialDesign:HintAssist.Foreground="Black" FontSize="16"   Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                    Margin="10 0 10 0" Text="{Binding PhoneNumber}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center" Width="250">
+                        <Button Margin="0 15 0 0"   FontSize="15" x:Name="BtAdd"   Click="BtAdd_Click" Height="39" Width="118">Добавить</Button>
+                        <Button Margin="10 15 0 0"   FontSize="15" x:Name="BtCleat"   Click="BtCleat_Click" Height="39" Width="103">Очистить</Button>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+
+        </Grid>
+        <StackPanel Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" Height="52">
+            <Button Margin="10 10 0 0" FontWeight="ExtraBold" Background="#D9D9D9" Foreground="Black" FontSize="15" x:Name="BtCreate"   Click="BtCreate_Click" Height="42" Width="113">Выбрать</Button>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="1" Background="LightGray">
+            <Button Margin="10 10 0 0" FontWeight="ExtraBold" BorderBrush="IndianRed" Background="IndianRed" Foreground="Black" FontSize="15" x:Name="BtCansle"   Click="BtCansle_Click" Height="36" Width="114">Отменить</Button>
+        </StackPanel>
+    </Grid>
+</Page>

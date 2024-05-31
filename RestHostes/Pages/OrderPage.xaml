@@ -1,0 +1,194 @@
+﻿<Page x:Class="RestHostes.Pages.OrderPage"
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:RestHostes.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="OrderPage">
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Resources/imageBack.png"></ImageBrush>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="400"></RowDefinition>
+                    <RowDefinition Height="170"></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Background="#D9D9D9" VerticalAlignment="Center" Height="40" >
+                    <Button   Background="White"  VerticalAlignment="Center" Margin="0 4 0 0" Width="200" x:Name="BtCreate" Click="BtCreate_Click">Создать заказ</Button>
+                    <StackPanel Margin="0 5 0 0" x:Name="SpAddress" Visibility="Collapsed" VerticalAlignment="Center" Orientation="Horizontal">
+                        <TextBlock FontSize="17" Margin="10 2 0 0">Адрес доставки:</TextBlock>
+                        <TextBox x:Name="TbAddres" FontSize="18" Width="150" Text="{Binding Address}"></TextBox>
+                        <Button x:Name="BtSaveAddress"  Background="White" Width="150" Height="30" Margin="10 0 0 0" Click="BtSaveAddress_Click">Сохранить</Button>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Grid.Row="1">
+                    <ListBox VerticalAlignment="Top" Background="LightGray"  Grid.ColumnSpan="2"  Height="400" x:Name="LbCart" HorizontalContentAlignment="Stretch" AlternationCount="2" >
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.Resources>
+                                        <Style TargetType="{x:Type Button}">
+                                            <Setter Property="FontFamily" Value="Arial"/>
+                                            <Setter Property="FontSize" Value="12"/>
+                                        </Style>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Setter Property="FontFamily" Value="Arial"/>
+                                        </Style>
+                                    </Grid.Resources>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="100"></RowDefinition>
+                                        <RowDefinition Height="2"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <StackPanel Grid.Row="0" Grid.Column="1">
+                                        <TextBlock Padding="3" FontSize="18" FontWeight="Bold" Text="{Binding Meal.Name}"></TextBlock>
+                                        <StackPanel Margin="3" Orientation="Vertical">
+                                            <TextBlock FontSize="12" Text="{Binding Meal.Price,StringFormat='Цена за штуку: {0} руб.'}"></TextBlock>
+                                            <TextBlock FontSize="12" Text="{Binding Status_Order_Meal.Name}"></TextBlock>
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Orientation="Horizontal" Margin="5">
+                                        <TextBlock FontSize="18" FontWeight="Bold" Text="Количество: "></TextBlock>
+                                        <TextBlock FontSize="18" Text="{Binding Count}"></TextBlock>
+                                    </StackPanel>
+                                    <Grid Width="120" Grid.Row="0" Grid.Column="3">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"></RowDefinition>
+                                            <RowDefinition Height="*"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Button Margin="3" FontSize="14" Grid.Row="0" Grid.Column="0" Width="45" Height="45"  Background="Transparent" Visibility="{Binding visabilitybt}"  BorderBrush="Transparent" Padding="10"  Click="Button_Click_2" CommandParameter="{Binding}">
+                                            <Button.Content>
+                                                <Image Source="/Resources/plus.png" Stretch="UniformToFill"></Image>
+                                            </Button.Content>
+                                        </Button>
+                                        <Button Margin="3" FontSize="14" Grid.Row="1" Grid.Column="0" Width="45" Height="45"  Background="Transparent" BorderBrush="Transparent" Visibility="{Binding visabilitybt}" Padding="10" Click="Button_Click" CommandParameter="{Binding}">
+                                            <Button.Content>
+                                                <Image Source="/Resources/minus.png" Stretch="UniformToFill"></Image>
+                                            </Button.Content>
+                                        </Button>
+                                        <Button Margin="3"  Grid.Row="0" Grid.RowSpan="2" Width="70" Height="70" Background="Transparent"  BorderBrush="Transparent" Grid.Column="1" Visibility="{Binding visabilitybt}" Padding="10" Click="Button_Click_1" CommandParameter="{Binding}">
+                                            <Button.Content>
+                                                <Image Source="/Resources/cartRemove.png" Stretch="Fill"></Image>
+                                            </Button.Content>
+                                        </Button>
+                                    </Grid>
+                                    <Grid Grid.Row="1" Grid.ColumnSpan="5" Background="Gray"></Grid>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+                <Grid Grid.Row="2" Background="LightGray">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"></RowDefinition>
+                        <RowDefinition Height="2*"></RowDefinition>
+                        <RowDefinition Height="5*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="200"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Orientation="Horizontal" x:Name="SpDiscountCode">
+                        <TextBox Height="50" Margin="5 0 0 0" FontSize="24" MaxLength="5" TextAlignment="Center" materialDesign:HintAssist.Hint="Купон" materialDesign:HintAssist.HintOpacity="0.4" VerticalAlignment="Center" Width="80" x:Name="TbCode"></TextBox>
+                        <Button x:Name="BtDiscount"  Click="BtDiscount_Click" Height="50" Width="200" Margin="5 0 0 0">Активировать купон</Button>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1"  VerticalAlignment="Center"  Orientation="Horizontal" Height="20">
+                        <TextBlock FontSize="15" x:Name="TbTotalPrice" Height="32">Цена: 0.00 руб.</TextBlock>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Grid.Column="1" Visibility="Hidden" x:Name="SpDiscount" Orientation="Horizontal">
+                        <TextBlock x:Name="TbEndePrice"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" x:Name="SpButtonStartOrder">
+                        <Button x:Name="BtClear" Click="BtClear_Click" Background="IndianRed" BorderBrush="IndianRed" Width="200" Height="50" Margin="15 0 0 0">Очитить заказ</Button>
+                        <Button x:Name="BtCompl" Click="BtCompl_Click" Background="LightGreen" BorderBrush="LightGreen"  Width="200" Height="50" Margin="60 0 0 0">Подтвердить заказ</Button>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" x:Name="SpButtonCmplOrder" Visibility="Collapsed">
+                        <Button x:Name="BtCalculate"  Click="BtCalculate_Click"  Background="Green" Foreground="White" Width="200" Height="50" Margin="150 0 0 0">Оформить заказгостей</Button>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Margin="0 0 0 0" Orientation="Horizontal" VerticalAlignment="Center" Background="#D9D9D9">
+                    <TextBox Opacity="0.6" materialDesign:HintAssist.Hint="Поиск" materialDesign:TextFieldAssist.HasClearButton="True" x:Name="TbSearch" TextChanged="TbSearch_TextChanged"  Padding="10 -5 10 0" VerticalContentAlignment="Center" FontSize="15"  Width="210" Height="21" ></TextBox>
+                    <Image Margin="5 0 0 0" Source="/Resources/First.png" ToolTip="Первое" x:Name="BtFirst" MouseDown="BtFirst_MouseDown"/>
+                    <Image Margin="5 0 0 0" Source="/Resources/Second.png" ToolTip="Второе" x:Name="BtSecond" MouseDown="BtSecond_MouseDown"/>
+                    <Image Margin="5 0 0 0" Source="/Resources/Salad.png" ToolTip="Салат" x:Name="BtSalad" MouseDown="BtSalad_MouseDown"/>
+                    <Image Margin="5 0 0 0" Source="/Resources/Dessert.png" ToolTip="Десерт" x:Name="BtDessert" MouseDown="BtDessert_MouseDown"/>
+                    <Image Margin="5 0 0 0" Source="/Resources/Drinks.png" ToolTip="Напиток" x:Name="BtDrinks" MouseDown="BtDrinks_MouseDown"/>
+                    <Border  MouseDown="BtAll_MouseDown" Background="LightGray" >
+                        <materialDesign:PackIcon Kind="Restart" ToolTip="Сбросить фильтр" Height="40" Width="41" />
+                    </Border>
+
+                </StackPanel>
+                <ListBox VerticalAlignment="Center" x:Name="LBMeal" Grid.Row="1"  HorizontalContentAlignment="Center" HorizontalAlignment="Center" AlternationCount="2" Height="560" Width="490" BorderBrush="Transparent" >
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" Width="474"></WrapPanel>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border Background="#D9D9D9" Width="220" Height="250" CornerRadius="20">
+                                <Border.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Добавить к заказу" x:Name="BtAdd" Click="BtAdd_Click"></MenuItem>
+                                    </ContextMenu>
+                                </Border.ContextMenu>
+                                <StackPanel>
+                                    <Border  BorderThickness="2" Background="White"  CornerRadius="20" Width="220" Height="80">
+                                        <Image Source="{Binding Images}"  Width="220" Height="80" Stretch="Uniform"></Image>
+                                    </Border>
+                                    <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left">
+                                        <TextBlock Padding="3" FontSize="18" FontWeight="Bold" Text="{Binding Name}"></TextBlock>
+                                        <StackPanel Margin="3" Orientation="Horizontal">
+                                            <TextBlock FontSize="12" FontWeight="Bold"  Text="Описание: "></TextBlock>
+                                            <TextBlock  FontSize="9"  TextWrapping="Wrap" Width="130" Text="{Binding Description}"></TextBlock>
+                                        </StackPanel>
+                                        <StackPanel Margin="3" Orientation="Horizontal">
+                                            <TextBlock FontSize="12" FontWeight="Bold"  Text="Категория: "></TextBlock>
+                                            <TextBlock FontSize="12" Text="{Binding Cotegories.Name}"></TextBlock>
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <StackPanel  Grid.Row="0" Grid.Column="2" Orientation="Horizontal" Margin="5">
+                                        <TextBlock FontSize="18" FontWeight="Bold" Text="Цена: "></TextBlock>
+                                        <TextBlock FontSize="18" Text="{Binding Price}"></TextBlock>
+                                        <TextBlock FontSize="18" Text=" руб."></TextBlock>
+                                    </StackPanel>
+
+                                </StackPanel>
+                            </Border>
+
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Page>

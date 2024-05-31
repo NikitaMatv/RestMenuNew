@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9e062e2133fe48efaa66802b4b391375" Name="Diagram1">
+        <EntityTypeShape EntityType="RestarauntDeliveryModel.Cotegories" Width="1.5" PointX="5.25" PointY="22.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestarauntDeliveryModel.Customer" Width="1.5" PointX="5.25" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestarauntDeliveryModel.Deliverer" Width="1.5" PointX="5.25" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestarauntDeliveryModel.Delivery" Width="1.5" PointX="7.5" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestarauntDeliveryModel.DiscountCode" Width="1.5" PointX="5.25" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestarauntDeliveryModel.Employee" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestarauntDeliveryModel.EmployeeRole" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestarauntDeliveryModel.Ingridient" Width="1.5" PointX="9.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestarauntDeliveryModel.Meal" Width="1.5" PointX="7.5" PointY="22.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestarauntDeliveryModel.Meal_Ingridient" Width="1.5" PointX="12" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestarauntDeliveryModel.Options" Width="1.5" PointX="5.25" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestarauntDeliveryModel.Order" Width="1.5" PointX="7.5" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestarauntDeliveryModel.Order_Meal" Width="1.5" PointX="9.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestarauntDeliveryModel.RequestStatus" Width="1.5" PointX="5.25" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestarauntDeliveryModel.Restaurant" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestarauntDeliveryModel.Status_Order_Meal" Width="1.5" PointX="7.5" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestarauntDeliveryModel.StatusOrder" Width="1.5" PointX="5.25" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestarauntDeliveryModel.Supplier" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestarauntDeliveryModel.Supplier_ingridient" Width="1.5" PointX="12" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestarauntDeliveryModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestarauntDeliveryModel.Tables" Width="1.5" PointX="5.25" PointY="6.5" IsExpanded="true" />
+        <AssociationConnector Association="RestarauntDeliveryModel.FK_Meal_Cotegories" ManuallyRouted="false" />
+        <AssociationConnector Association="RestarauntDeliveryModel.FK_Order_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="RestarauntDeliveryModel.FK_Deliverer_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="RestarauntDeliveryModel.FK_Delivery_Deliverer" ManuallyRouted="false" />
+        <AssociationConnector Association="RestarauntDeliveryModel.FK_Delivery_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="RestarauntDeliveryModel.FK_Delivery_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="RestarauntDeliveryModel.FK_Order_DiscountCode" ManuallyRouted="false" />
+        <AssociationConnector Association="RestarauntDeliveryModel.FK_Employee_EmployeeRole" ManuallyRouted="false" />
+        <AssociationConnector Association="RestarauntDeliveryModel.FK_Tables_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="RestarauntDeliveryModel.FK_Meal_Ingridient_Ingridient" ManuallyRouted="false" />
+        <AssociationConnector Association="RestarauntDeliveryModel.FK_Supplier_ingridient_Ingridient" ManuallyRouted="false" />
+        <AssociationConnector Association="RestarauntDeliveryModel.FK_Meal_Ingridient_Meal" ManuallyRouted="false" />
+        <AssociationConnector Association="RestarauntDeliveryModel.FK_Meal_RequestStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="RestarauntDeliveryModel.FK_Order_Meal_Meal" ManuallyRouted="false" />
+        <AssociationConnector Association="RestarauntDeliveryModel.FK_Order_Options" ManuallyRouted="false" />
+        <AssociationConnector Association="RestarauntDeliveryModel.FK_Order_Meal_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="RestarauntDeliveryModel.FK_Order_StatusOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="RestarauntDeliveryModel.FK_Order_Tables" ManuallyRouted="false" />
+        <AssociationConnector Association="RestarauntDeliveryModel.FK_Order_Meal_Status_Order_Meal" ManuallyRouted="false" />
+        <AssociationConnector Association="RestarauntDeliveryModel.FK_Supplier_ingridient_Supplier" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

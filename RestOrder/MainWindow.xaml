@@ -1,0 +1,28 @@
+﻿<Window x:Class="RestOrder.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RestOrder"
+        mc:Ignorable="d"
+        Title="Restaraun" Height="700" Width="1000" ResizeMode="CanMinimize"  Icon="/Recources/Logo.png" WindowStyle="None">
+    <Grid>
+        <Border BorderBrush="Black" BorderThickness="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2" ></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="2"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Background="Black"></StackPanel>
+                <StackPanel Width="1000" Grid.Row="1"  Background="#686868" Height="30" Orientation="Horizontal" VerticalAlignment="Center" MouseDown="StackPanel_MouseDown"  >
+                    <Image Source="/Recources/Line3.png" Margin="930 15 0 0" VerticalAlignment="Top" HorizontalAlignment="Right" Height="5" x:Name="ImgCollapse" MouseDown="ImgCollapse_MouseDown"/>
+                    <Image Source="/Recources/Group10.png" Margin="15 5 0 0 " Height="20" VerticalAlignment="Top" x:Name="ImgClose" HorizontalAlignment="Right" MouseDown="ImgClose_MouseDown"/>
+                </StackPanel>
+                <StackPanel Grid.Row="2" Background="Black"></StackPanel>
+                <Frame x:Name="MainFrame" Grid.Row="3" NavigationUIVisibility="Hidden"></Frame>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

@@ -1,0 +1,215 @@
+﻿<Page x:Class="RestWaiter.Pages.CartPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:RestWaiter.Pages"
+      mc:Ignorable="d" 
+Height="700" Width="1000" 
+      Title="CartPage">
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Resources/imageBack.png"></ImageBrush>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0">
+            <Grid Background="LightGray">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="450"></RowDefinition>
+                    <RowDefinition Height="150"></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0">
+                    <ListView x:Name="LvTable" Height="40" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="IsSelected" Value="True"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal" Width="490"></WrapPanel>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical"  MouseDown="LvTable_MouseDown" >
+                                    <StackPanel Orientation="Horizontal" Width="150">
+                                        <TextBlock Text="{Binding Tables.Id,StringFormat='Стол {0}'}"></TextBlock>
+                                        <TextBlock Text="{Binding Price,StringFormat=' ({0} руб.)'}"></TextBlock>
+                                    </StackPanel>
+                                    <StackPanel>
+                                        <TextBlock x:Name="TbTime"></TextBlock>
+                                    </StackPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
+                <StackPanel Grid.Row="1">
+                    <ListBox VerticalAlignment="Top"  Grid.ColumnSpan="2" Height="450" x:Name="LbCart" HorizontalContentAlignment="Stretch" AlternationCount="2" >
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid >
+                                    <Grid.Resources>
+                                        <Style TargetType="{x:Type Button}">
+                                            <Setter Property="FontFamily" Value="Arial"/>
+                                            <Setter Property="FontSize" Value="12"/>
+                                        </Style>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Setter Property="FontFamily" Value="Arial"/>
+                                        </Style>
+                                    </Grid.Resources>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="100"></RowDefinition>
+                                        <RowDefinition Height="2"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <StackPanel Grid.Row="0" Grid.Column="1">
+                                        <TextBlock Padding="3" FontSize="18" FontWeight="Bold" Text="{Binding Meal.Name}"></TextBlock>
+                                        <StackPanel Margin="3" Orientation="Vertical">
+                                            <TextBlock FontSize="12" Text="{Binding Meal.Price,StringFormat='Цена за штуку: {0} руб.'}"></TextBlock>
+                                            <TextBlock FontSize="18" Text="{Binding Status_Order_Meal.Name}"></TextBlock>
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Orientation="Horizontal" Margin="5">
+                                        <TextBlock FontSize="18" FontWeight="Bold" Text="Количество: "></TextBlock>
+                                        <TextBlock FontSize="18" Text="{Binding Count}"></TextBlock>
+                                    </StackPanel>
+                                    <Grid Width="120" Grid.Row="0" Grid.Column="3">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"></RowDefinition>
+                                            <RowDefinition Height="*"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Button Margin="3" FontSize="14" Grid.Row="0" Grid.Column="0" Width="45" Height="45"  Background="Transparent" Visibility="{Binding visabilitybt}"  BorderBrush="Transparent" Padding="10"  Click="Button_Click_2" CommandParameter="{Binding}">
+                                            <Button.Content>
+                                                <Image Source="/Resources/plus.png" Stretch="UniformToFill"></Image>
+                                            </Button.Content>
+                                        </Button>
+                                        <Button Margin="3" FontSize="14" Grid.Row="1" Grid.Column="0" Width="45" Height="45"  Background="Transparent" BorderBrush="Transparent" Visibility="{Binding visabilitybt}" Padding="10" Click="Button_Click" CommandParameter="{Binding}">
+                                            <Button.Content>
+                                                <Image Source="/Resources/minus.png" Stretch="UniformToFill"></Image>
+                                            </Button.Content>
+                                        </Button>
+                                        <Button Margin="3"  Grid.Row="0" Grid.RowSpan="2" Width="70" Height="70" Background="Transparent"  BorderBrush="Transparent" Grid.Column="1" Visibility="{Binding visabilitybt}" Padding="10" Click="Button_Click_1" CommandParameter="{Binding}">
+                                            <Button.Content>
+                                                <Image Source="/Resources/cartRemove.png" Stretch="Fill"></Image>
+                                            </Button.Content>
+                                        </Button>
+                                    </Grid>
+                                    <Grid Grid.Row="1" Grid.ColumnSpan="5" Background="Gray"></Grid>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+                <Grid Grid.Row="2" Background="LightGray">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="2*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="61*"></ColumnDefinition>
+                        <ColumnDefinition Width="39*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Orientation="Horizontal" x:Name="SpDiscountCode">
+                        <TextBox Height="50" Margin="5 0 0 0" FontSize="27" MaxLength="5" TextAlignment="Center" VerticalAlignment="Center" Width="90" x:Name="TbCode"></TextBox>
+                        <Button x:Name="BtDiscount"  Background="White" Click="BtDiscount_Click" Height="50" Width="200" Margin="5 0 0 0">Активировать купон</Button>
+                    </StackPanel>
+                    <StackPanel  Grid.Column="1" VerticalAlignment="Center" Orientation="Horizontal" Margin="0,0,0,37" Grid.RowSpan="2">
+                        <TextBlock FontSize="15" x:Name="TbTotalPrice">Цена: 0.00 руб.</TextBlock>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Grid.Column="1" Visibility="Hidden" x:Name="SpDiscount" Orientation="Horizontal">
+                        <TextBlock x:Name="TbEndePrice"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" x:Name="SpButtonStartOrder">
+                        <Button x:Name="BtClear"  Click="BtClear_Click" Background="IndianRed" BorderBrush="IndianRed" Width="200" Height="50" Margin="15 0 0 0">Очитить заказ</Button>
+                        <Button x:Name="BtCompl"  Click="BtCompl_Click" Background="LightGreen" BorderBrush="LightGreen" Width="200" Height="50" Margin="60 0 0 0">Подтвердить заказ</Button>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" x:Name="SpButtonCmplOrder" Visibility="Collapsed">
+                        <Button x:Name="BtCalculate"  Click="BtCalculate_Click" Background="Green" Foreground="White" Width="200" Height="50" Margin="150 0 0 0">Рассчитать гостей</Button>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="45"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Margin="0 0 0 0" Orientation="Horizontal" VerticalAlignment="Center" Background="#D9D9D9">
+                    <TextBox  x:Name="TbSearch" TextChanged="TbSearch_TextChanged" materialDesign:HintAssist.Hint="Поиск" materialDesign:TextFieldAssist.HasClearButton="True" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Padding="10 -5 10 0" VerticalContentAlignment="Center" FontSize="15"  Width="180" Height="35" ></TextBox>
+                    <Image Margin="5 0 0 0" Source="/Resources/First.png" ToolTip="Первое" x:Name="BtFirst" MouseDown="BtFirst_MouseDown"/>
+                    <Image Margin="5 0 0 0" Source="/Resources/Second.png" ToolTip="Второе" x:Name="BtSecond" MouseDown="BtSecond_MouseDown"/>
+                    <Image Margin="5 0 0 0" Source="/Resources/Salad.png" ToolTip="Салат" x:Name="BtSalad" MouseDown="BtSalad_MouseDown"/>
+                    <Image Margin="5 0 0 0" Source="/Resources/Dessert.png" ToolTip="Десерт" x:Name="BtDessert" MouseDown="BtDessert_MouseDown"/>
+                    <Image Margin="5 0 0 0" Source="/Resources/Drinks.png" ToolTip="Напиток" x:Name="BtDrinks" MouseDown="BtDrinks_MouseDown"/>
+                    <Image Margin="5 0 0 0" Source="/Resources/ThrowOffs.png" ToolTip="Сбросить филтр" x:Name="BtAll" MouseDown="BtAll_MouseDown"/>
+                </StackPanel>
+                <ListBox VerticalAlignment="Top" x:Name="LBMeal" Grid.Row="1"   Background="Transparent" HorizontalContentAlignment="Stretch" AlternationCount="2" Height="620" BorderBrush="Transparent" >
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" Width="470"></WrapPanel>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border Background="#D9D9D9" Width="210" Height="300" BorderThickness="2" CornerRadius="20">
+                                <Border.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Добавить к заказу" x:Name="BtAdd" Click="BtAdd_Click"></MenuItem>
+                                    </ContextMenu>
+                                </Border.ContextMenu>
+                                <StackPanel>
+                                    <Border Background="White" BorderThickness="2"  CornerRadius="20" Width="210" Padding="5" Height="160">
+                                        <Image Source="{Binding Images}"  Stretch="Uniform"></Image>
+                                    </Border>
+                                    <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left">
+                                        <TextBlock Padding="3" FontSize="18" FontWeight="Bold" Text="{Binding Name}"></TextBlock>
+                                        <StackPanel Margin="3" Orientation="Horizontal">
+                                            <TextBlock FontSize="12" FontWeight="Bold"  Text="Описание: "></TextBlock>
+                                            <TextBlock  FontSize="9"  TextWrapping="Wrap" Width="130" Text="{Binding Description}"></TextBlock>
+                                        </StackPanel>
+                                        <StackPanel Margin="3" Orientation="Horizontal">
+                                            <TextBlock FontSize="12" FontWeight="Bold"  Text="Категория: "></TextBlock>
+                                            <TextBlock FontSize="12" Text="{Binding Cotegories.Name}"></TextBlock>
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <StackPanel  Grid.Row="0" Grid.Column="2" Orientation="Horizontal" Margin="5">
+                                        <TextBlock FontSize="18" FontWeight="Bold" Text="Цена: "></TextBlock>
+                                        <TextBlock FontSize="18" Text="{Binding Price}"></TextBlock>
+                                        <TextBlock FontSize="18" Text=" руб."></TextBlock>
+                                    </StackPanel>
+
+                                </StackPanel>
+                            </Border>
+
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+        </StackPanel>
+    </Grid>
+
+</Page>

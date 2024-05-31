@@ -1,0 +1,72 @@
+﻿<Page x:Class="RestShev.Pages.OrderPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RestShev.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="OrderPage">
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush Stretch="Fill"  AlignmentY="Top" AlignmentX="Center" ImageSource="/Resources/imageBack.png" />
+        </Grid.Background>
+        <ListBox VerticalAlignment="Top" Background="Transparent" Grid.ColumnSpan="2" Grid.Row="1" Height="600" BorderBrush="Transparent"  x:Name="LbCart" HorizontalContentAlignment="Stretch" AlternationCount="2">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" Width="910"></WrapPanel>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border Background="#D9D9D9" BorderThickness="2" Width="410" BorderBrush="Black">
+                        <Border.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Выполнен" x:Name="BtCompl" Click="BtCompl_Click"></MenuItem>
+                            </ContextMenu>
+                        </Border.ContextMenu>
+                        <Grid>
+                            <Grid.Resources>
+                                <Style TargetType="{x:Type Button}">
+                                    <Setter Property="FontFamily" Value="Arial"/>
+                                    <Setter Property="FontSize" Value="12"/>
+                                </Style>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="FontFamily" Value="Arial"/>
+                                </Style>
+                            </Grid.Resources>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="180"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Orientation="Vertical" Margin="10" Grid.ColumnSpan="3">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="18" FontWeight="Bold" Text="{Binding OrderID,StringFormat='Заказ №{0}'}"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="18" Text="{Binding Meal.Name,StringFormat='Название: {0}'}"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="18" Text="{Binding Count,StringFormat='Колличество: {0}'}"></TextBlock>
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Orientation="Vertical" Margin="5" Grid.ColumnSpan="3">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="18" FontWeight="Bold" Visibility="{Binding visabilityTable}"  Text="{Binding Order.TableId,StringFormat='Стол №{0}'}"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="18" Text="{Binding Order.DateTimesSt,StringFormat='Дата заказа: dd.MM hh:mm'}"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="18" Text="{Binding Order.Options.Name}"></TextBlock>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</Page>

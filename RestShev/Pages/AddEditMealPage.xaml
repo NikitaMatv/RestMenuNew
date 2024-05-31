@@ -1,0 +1,40 @@
+﻿<Page x:Class="RestShev.Pages.AddEditMealPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:RestShev.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="700" d:DesignWidth="1000"
+      Title="AddEditMealPage">
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Resources/imageBack.png"></ImageBrush>
+        </Grid.Background>
+        <StackPanel  VerticalAlignment="Center" Margin="40 0 0 0" >
+            <Border  Margin="50 0 0 0" HorizontalAlignment="Left" Background="White"  CornerRadius="20" Padding="5" BorderThickness="2" Width="350" Height="350">
+                <Image Source="{Binding Images}" ></Image>
+            </Border>
+            <Border  Margin="50 0 0 0" HorizontalAlignment="Left"   CornerRadius="20" Padding="5" BorderThickness="2" Width="500" Height="200" Background="#D9D9D9">
+                <StackPanel Margin="0 0 0 0" Orientation="Vertical">
+                    <TextBox  TextAlignment="Center" FontSize="20" materialDesign:HintAssist.HelperText="Рецепт" materialDesign:HintAssist.HelperTextFontSize="15"  Text="{Binding Recipe}" IsReadOnly="True" TextWrapping="Wrap" x:Name="TbRecipe" HorizontalAlignment="Left" Width="483" Height="168" ></TextBox>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+        <Border  CornerRadius="20"  BorderThickness="2"  Margin="0 30 30 0" Height="550" Width="310" HorizontalAlignment="Right"  Background="#D9D9D9">
+            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center">
+                <TextBox  Opacity="0.6" PreviewTextInput="TbName_PreviewTextInput" materialDesign:HintAssist.HelperText="Название" materialDesign:HintAssist.HelperTextFontSize="15" Margin="0 50 0 15" TextAlignment="Center" Background="#E9E9E9"  FontSize="25" Text="{Binding Name}" IsReadOnly="True" x:Name="LoginTb" Width="250" Height="40" ></TextBox>
+                <TextBox Opacity="0.6" PreviewTextInput="TbPhone_number_PreviewTextInput" materialDesign:HintAssist.HelperText="Цена" Margin="0 10 0 15" materialDesign:HintAssist.HelperTextFontSize="15" TextAlignment="Center" Background="#E9E9E9"  FontSize="25" Text="{Binding Price}"  x:Name="EmailTb" Width="250" Height="40" ></TextBox>
+                <ComboBox SelectedValue="{Binding Cotegories}" materialDesign:HintAssist.HelperText="Категория" FontSize="15" Margin="0 10 0 20" DisplayMemberPath="Name" x:Name="CbCotegories" Height="30"></ComboBox>
+                <TextBox Opacity="0.6" PreviewTextInput="TbName_PreviewTextInput" materialDesign:HintAssist.HelperText="Описание"  TextAlignment="Center" Margin="0 0 0 15" materialDesign:HintAssist.HelperTextFontSize="15" TextWrapping="Wrap"  Background="#E9E9E9" Text="{Binding Description}" MaxLength="170" FontSize="20" x:Name="SurNameTb" Width="250" Height="150" ></TextBox>
+                <Button x:Name="BtImage"  Background="White" Click="BtImage_Click" Content="Добавить фото" Width="150"  Margin="0 10 0 0" Height="30"></Button>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0 10 0 0 ">
+                    <Button Margin="0 0 0 0" FontWeight="ExtraBold" FontSize="12" x:Name="SaveBt"   Background="White"  Click="SaveBt_Click"  Height="40" Width="100">Сохранить</Button>
+                    <Button Margin="50 0 0 0" FontWeight="ExtraBold" FontSize="12" x:Name="ExitBt"  Background="White"  Click="ExitBt_Click" Height="40" Width="100">Отмена</Button>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>
