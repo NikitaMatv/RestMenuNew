@@ -104,6 +104,10 @@ namespace RestWaiter.Pages
             {
                 LbCart.ItemsSource = App.DB.Order_Meal.Where(x => x.OrderID == contsOrd.ID).ToList();
             }
+            else
+            {
+                return;
+            }
             int pri = 0;
             IEnumerable<Order_Meal> products = App.DB.Order_Meal.Where(x => x.OrderID == contsOrd.ID).ToList();
             foreach (var items in products)
