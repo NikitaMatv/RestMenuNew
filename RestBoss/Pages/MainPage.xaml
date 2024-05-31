@@ -40,30 +40,59 @@
                 <RowDefinition Height="80"></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            <StackPanel VerticalAlignment="Bottom" Panel.ZIndex="10" Grid.Column="0" Grid.Row="0"  HorizontalAlignment="Left" Margin="70 0 0 0">
+            <Rectangle Fill="#D9D9D9" Grid.RowSpan="3" Grid.ColumnSpan="2" Width="916">
+                
+            </Rectangle>
+            <StackPanel VerticalAlignment="Bottom" Background="#D9D9D9" Panel.ZIndex="10" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" Margin="70 0 0 0">
                 <ComboBox x:Name="CbTimes" Panel.ZIndex="10" SelectionChanged="CbTimes_SelectionChanged" Width="200" Height="30"  FontSize="18">
                     <TextBlock>За неделю</TextBlock>
                     <TextBlock>За месяц</TextBlock>
                     <TextBlock>За квартал</TextBlock>
                 </ComboBox>
+                <Button x:Name="BtImport" Margin="550 0 0 0" Click="BtImport_Click">Выгрузить</Button>
+            </StackPanel>
+            <StackPanel Grid.Row="1"  Grid.ColumnSpan="2" Background="#D9D9D9" Width="916">
+                <ListView x:Name="LbMeal">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Height="290"  Orientation="Horizontal"></WrapPanel>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Width="290" >
+                                <Grid.Background>
+                                    <ImageBrush ImageSource="{Binding meal.Images}" Stretch="Uniform"></ImageBrush>
+                                </Grid.Background>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="160"></RowDefinition>
+                                    <RowDefinition Height="50"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <StackPanel Grid.Row="1" Background="#D9D9D9" Opacity="0.7">
+
+                                </StackPanel>
+                                <StackPanel Grid.Row="1" VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <TextBlock FontSize="25" Text="{Binding meal.Name}" ></TextBlock>
+                                    <TextBlock FontSize="25"  Text="{Binding Sum,StringFormat=' {0} шт. '}" ></TextBlock>
+                                </StackPanel>
+
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+            <StackPanel Grid.Row="2" Grid.Column="0" Panel.ZIndex="10" VerticalAlignment="Bottom" Margin="70 0 0 0">
                 <TextBlock FontSize="18"  >Количество продаж</TextBlock>
             </StackPanel>
-            <StackPanel VerticalAlignment="Bottom" Panel.ZIndex="10" Grid.Column="1" Grid.Row="0"  HorizontalAlignment="Left" Margin="70 0 0 0">
-                <TextBlock FontSize="18">Выручка за день</TextBlock>
+            <StackPanel VerticalAlignment="Bottom" Panel.ZIndex="10" Grid.Column="1" Grid.Row="2"  HorizontalAlignment="Left" Margin="30 0 0 0">
+                <TextBlock FontSize="18">Выручка</TextBlock>
             </StackPanel>
-            <StackPanel Grid.Row="2" Grid.Column="0" Panel.ZIndex="10" VerticalAlignment="Bottom" Margin="50 0 0 0">
-                <TextBlock FontSize="18">Статистика за все время</TextBlock>
-            </StackPanel>
-            <Border Grid.Column="0" Grid.Row="1" Margin=" 40 -80 0 20"   Background="#D9D9D9">
+            <Border Grid.Column="0" Grid.Row="3" Margin=" 40 -80 0 20"   Background="#D9D9D9">
                 <ScottPlot:WpfPlot  x:Name="wpfPlot1" Width="400" Height="180" Margin="0 60 0 0" x:FieldModifier="public" />
             </Border>
-            <Border Grid.Column="1" Grid.Row="1" Margin=" 0 -80 40 20" Background="#D9D9D9">
+            <Border Grid.Column="1" Grid.Row="3" Margin=" 0 -80 40 20" Background="#D9D9D9">
                 <ScottPlot:WpfPlot  x:Name="wpfPlot2" Width="400" Height="180" Margin="0 60 0 0" x:FieldModifier="public" />
             </Border>
-            <Border Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Margin=" 40 -120 40 20" Background="#D9D9D9" CornerRadius="15">
-                <ScottPlot:WpfPlot  x:Name="wpfPlot3" Width="850" Height="180" Margin="0 100 0 0" x:FieldModifier="public"/>
-            </Border>
-           
         </Grid>
     </Grid>
 </Page>

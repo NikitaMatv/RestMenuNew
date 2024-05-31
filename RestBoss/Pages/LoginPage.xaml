@@ -11,8 +11,6 @@
 
     <Grid>
         <Image Source="/Resources/Background.png" Margin="0,0,20,-0" />
-        
-
         <Polygon Fill="Gray" Points="1000, 0, 700, 0, 400, 800, 1000, 800"/>
         <Image Source="/Resources/Logo.png" Margin="705,2,5,504" />
         <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Right"  Margin="0 100 100 0" MaxWidth="500">

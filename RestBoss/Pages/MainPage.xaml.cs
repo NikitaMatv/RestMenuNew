@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Excel = Microsoft.Office.Interop.Excel;
+using Microsoft.Win32;
 
 namespace RestBoss.Pages
 {
@@ -21,6 +23,17 @@ namespace RestBoss.Pages
     /// </summary>
     public partial class MainPage : Page
     {
+      
+        class ExlMeal
+        {
+            
+             public Meal meal { get; set; }
+             public int Sum { get; set; }
+            
+        }
+        IEnumerable<ExlMeal> import;
+        string DateSelect = " ";
+        string foglio = @"C:\Users\...\DownLoads\Example.xls";
         public MainPage()
         {
             InitializeComponent();
@@ -62,7 +75,7 @@ namespace RestBoss.Pages
             var dates = DateTime.Now - TimeSpan.FromDays(d);
             ScottPlot.Plot myPlot1 = new ScottPlot.Plot();
             var result3 = (
-            from s in App.DB.Order.Where(x => x.DataTimeEnd >= dates && x.DataTimeEnd < DateTime.Now).ToList()
+            from s in App.DB.Order.Where(x => x.DataTimeEnd >= dates && x.DataTimeEnd < DateTime.Now).OrderBy(x=>x.DataTimeEnd).ToList()
             group s by new { date = new DateTime(s.DataTimeEnd.Value.Date.Year, s.DataTimeEnd.Value.Date.Month, s.DataTimeEnd.Value.Date.Day).Date } into g
             select new
             {
@@ -83,14 +96,14 @@ namespace RestBoss.Pages
             }
             myPlot1.Add.Scatter(date3, counts3);
             myPlot1.Axes.DateTimeTicksBottom();
-            myPlot1.SavePng("demo.png", 400, 300);
+            myPlot1.SavePng("demo.png", 400, 300);         
             wpfPlot1.Reset(myPlot1);
             wpfPlot1.Refresh();
 
             ScottPlot.Plot myPlot2 = new ScottPlot.Plot();
   
             var result2 = (
-            from s in App.DB.Order.Where(x=>x.DataTimeEnd >= dates && x.DataTimeEnd < DateTime.Now).ToList()
+            from s in App.DB.Order.Where(x=>x.DataTimeEnd >= dates && x.DataTimeEnd < DateTime.Now).OrderBy(x => x.DataTimeEnd).ToList()
             group s by new { date = new DateTime(s.DataTimeEnd.Value.Date.Year, s.DataTimeEnd.Value.Date.Month, s.DataTimeEnd.Value.Date.Day).Date } into g
             select new
             {
@@ -117,45 +130,79 @@ namespace RestBoss.Pages
             wpfPlot2.Refresh();
 
             ScottPlot.Plot myPlot3 = new ScottPlot.Plot();
-            int?[] sum1 = App.DB.Order.Where(o => o.DataTimeEnd < DateTime.Now).OrderBy(x => x.DataTimeEnd).Select(x => x.Price).ToArray();
-            DateTime?[] dataX2 = App.DB.Order.Where(o => o.DataTimeEnd < DateTime.Now).OrderBy(x => x.DataTimeEnd).Select(x => x.DataTimeEnd).ToArray();
-            var result = (
-           from s in App.DB.Order.Where(x => x.DataTimeEnd != null).ToList()
-           group s by new { date = new DateTime(s.DataTimeEnd.Value.Date.Year, s.DataTimeEnd.Value.Date.Month, s.DataTimeEnd.Value.Date.Day).Date } into g
-           select new
-           {
-               DateKey = g.Key.date,
-               Sum = g.Sum(x => x.Price),
-               Counts = g.Count()
-           }
-           ).ToList();
-            double?[] sum = new double?[result.ToList().Count];
-            double?[] counts = new double?[result.ToList().Count];
-            DateTime?[] date = new DateTime?[result.ToList().Count];
-            for (int i = 0; i < result.Count; i++)
-            {
-                sum[i] = result[i].Sum;
-                date[i] = result[i].DateKey;
-                counts[i] = result[i].Counts;
-            }        
-            for (int i = 0; i < result.Count; i++)
-            {
-                myPlot3.Add.Text($"{result[i].DateKey.ToString("D")} \n {result[i].Sum} руб.", result[i].DateKey.Date.ToOADate(), (double)result[i].Sum);
-            }
-            myPlot3.Add.Scatter(date, sum);
-            for (int i = 0; i < result.Count; i++)
-            {
-                myPlot3.Add.Text($"{result[i].DateKey.ToString("D")} \n {result[i].Counts} шт.", result[i].DateKey.Date.ToOADate(), (double)result[i].Counts);
-            }
-            myPlot3.Add.Scatter(date, counts);
-            myPlot3.Axes.DateTimeTicksBottom();
-            myPlot3.SavePng("demo.png", 400, 300);
-            wpfPlot3.Reset(myPlot3);
-            wpfPlot3.Refresh();
+            IEnumerable<Order_Meal> result = App.DB.Order_Meal.Where(x => x.Order.DataTimeEnd >= dates.Date && x.Order.DataTimeEnd < DateTime.Now).ToList() ;
+            var results = result.GroupBy(x => x.Meal, x => x.Count)
+                  .Select(g => new ExlMeal { meal = g.Key, Sum = g.Sum() });
+            import = results;
+            DateSelect = $"{DateTime.Now.Date - dates.Date} - {DateTime.Now.Date.ToShortDateString()}";
+            LbMeal.ItemsSource = results.ToList();
         }
         private void CbTimes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Update();
+        }
+
+        private void BtImport_Click(object sender, RoutedEventArgs e)
+        {
+
+            Excel.Application exApp = new Excel.Application();
+            Excel.Workbook mWorkbook = exApp.Workbooks.Add(System.Reflection.Missing.Value);
+            Excel.Worksheet mWSheet1 = (Excel.Worksheet)mWorkbook.Worksheets.get_Item(1);
+
+            mWSheet1.Cells[1, 1] = "Название";
+            mWSheet1.Cells[1, 1].Font.Bold = true;
+            mWSheet1.Cells[1, 2] = "Цена за шт";
+            mWSheet1.Cells[1, 2].Font.Bold = true;
+            mWSheet1.Cells[1, 3] = "Количество";
+            mWSheet1.Cells[1, 3].Font.Bold = true;
+            mWSheet1.Cells[1, 4] = "Цена за все";
+            mWSheet1.Cells[1, 4].Font.Bold = true;
+            (exApp.Sheets[1] as Excel.Worksheet).Name = "Отчет";
+            int i = 2;
+            foreach(var item in import)
+            {
+                mWSheet1.Cells[i, 1] = item.meal.Name;
+                mWSheet1.Cells[i, 2] = item.meal.Price;
+                mWSheet1.Cells[i, 3] = item.Sum;
+                mWSheet1.Cells[i, 4] = item.Sum * item.meal.Price;
+                i++; 
+            }
+            SaveFileDialog save = new SaveFileDialog();
+            
+            save.Filter = "Excel (*.xls)|*.xls";
+            save.ShowDialog();
+            if (save.FileName == null)
+            {
+                return;
+            }
+           
+            foglio = save.FileName;
+            mWorkbook.SaveAs(foglio, System.Reflection.Missing.Value, System.Reflection.Missing.Value, System.Reflection.Missing.Value, System.Reflection.Missing.Value, System.Reflection.Missing.Value, Excel.XlSaveAsAccessMode.xlExclusive, System.Reflection.Missing.Value, System.Reflection.Missing.Value, System.Reflection.Missing.Value, System.Reflection.Missing.Value, System.Reflection.Missing.Value);          
+            MessageBoxResult result = MessageBox.Show("Открыть фаил?","Открыть",MessageBoxButton.YesNo, MessageBoxImage.Information);
+            if (result.Equals(MessageBoxResult.Yes))
+            {
+                OpenFile();
+            }
+            mWorkbook.Close(System.Reflection.Missing.Value, System.Reflection.Missing.Value, System.Reflection.Missing.Value);
+            exApp.Quit();
+            GC.WaitForPendingFinalizers();
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            GC.Collect();          
+        }
+        private void OpenFile()
+        {
+            try
+            {
+                var excelApp = new Excel.Application();
+                excelApp.Visible = true;
+                Excel.Workbooks books = excelApp.Workbooks;
+                Excel.Workbook sheets = books.Open(foglio);              
+            }
+            catch
+            {
+                return;
+            }
         }
     }
 }

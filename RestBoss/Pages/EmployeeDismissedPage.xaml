@@ -50,6 +50,7 @@
                             </Grid.RowDefinitions>
                             <StackPanel  Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Orientation="Horizontal">
                                 <TextBlock Padding="3" FontSize="18" FontWeight="Bold" Text="{Binding EmployeeRole.Name}"></TextBlock>
+                                <TextBlock Padding="3" FontSize="18" FontWeight="Bold" Text=":"></TextBlock>
                                 <TextBlock Padding="3 3 0 0" FontSize="18" Text="{Binding Name}" Margin="0 0 10 0"></TextBlock>
                                 <TextBlock Padding="0 3 0 0" FontSize="18" Text="{Binding Surname}" Margin="0 0 10 0"></TextBlock>
                                 <TextBlock Padding="0 3 0 0" FontSize="18" Text="{Binding Patronymic}" Margin="0 0 10 0"></TextBlock>

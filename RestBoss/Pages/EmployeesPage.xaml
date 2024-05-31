@@ -28,7 +28,7 @@
             </Button>
         </StackPanel>
         <StackPanel Grid.Row="1">
-            <TextBox Opacity="0.6"   x:Name="TbSearch" materialDesign:HintAssist.Hint="Поиск" materialDesign:TextFieldAssist.HasClearButton="True" TextChanged="TbSearch_TextChanged"  Padding="10 -5 10 0" VerticalContentAlignment="Center" FontSize="20"  Width="290" Height="25" ></TextBox>
+            <TextBox Opacity="0.6"   x:Name="TbSearch" materialDesign:HintAssist.Hint="Поиск" materialDesign:TextFieldAssist.HasClearButton="True" TextChanged="TbSearch_TextChanged"  Padding="10 -5 10 0" VerticalContentAlignment="Center" FontSize="20"  Width="290" Height="30" ></TextBox>
         </StackPanel>
         <ListBox Grid.Row="2" VerticalAlignment="Top" x:Name="LBEmployee" Background="#686868"  HorizontalContentAlignment="Stretch" AlternationCount="2" Height="615">
             <ListBox.ItemTemplate>

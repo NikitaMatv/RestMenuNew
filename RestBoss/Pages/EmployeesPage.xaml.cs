@@ -24,7 +24,7 @@ namespace RestBoss.Pages
         public EmployeesPage()
         {
             InitializeComponent();
-            LBEmployee.ItemsSource = App.DB.Employee.Where(x => x.IsDismissed != true).ToList();
+            LBEmployee.ItemsSource = App.DB.Employee.Where(x => x.IsDismissed != true).Where(x=>x.RoleID != 8).ToList();
         }
 
         private void Redact_Click(object sender, RoutedEventArgs e)
@@ -46,7 +46,7 @@ namespace RestBoss.Pages
             }
             SelectedEmployee.IsDismissed = true;
             App.DB.SaveChanges();
-            LBEmployee.ItemsSource = App.DB.Employee.Where(x => x.IsDismissed != true).ToList();
+            LBEmployee.ItemsSource = App.DB.Employee.Where(x => x.IsDismissed != true).Where(x => x.RoleID != 8).ToList();
         }
 
         private void EmployeeAdd_Click(object sender, RoutedEventArgs e)
@@ -74,11 +74,11 @@ namespace RestBoss.Pages
             if (TbSearch.Text.Length > 0)
             {
                
-                LBEmployee.ItemsSource = App.DB.Employee.Where(x => x.Name.ToLower().Contains(TbSearch.Text.Trim().ToLower()) || x.Surname.ToLower().Contains(TbSearch.Text.Trim().ToLower()) || x.PhoneNumber.ToLower().Contains(TbSearch.Text.Trim().ToLower())).Where(x => x.IsDismissed != true).ToList();
+                LBEmployee.ItemsSource = App.DB.Employee.Where(x => x.Name.ToLower().Contains(TbSearch.Text.Trim().ToLower()) || x.Surname.ToLower().Contains(TbSearch.Text.Trim().ToLower()) || x.PhoneNumber.ToLower().Contains(TbSearch.Text.Trim().ToLower())).Where(x => x.IsDismissed != true).Where(x => x.RoleID != 8).ToList();
             }
             else
             {
-                LBEmployee.ItemsSource = App.DB.Employee.Where(x => x.IsDismissed != true).ToList();
+                LBEmployee.ItemsSource = App.DB.Employee.Where(x => x.IsDismissed != true).Where(x => x.RoleID != 8).ToList();
             }
         }
     }
