@@ -58,8 +58,14 @@ namespace RestHostes.Pages
             var selectedclient = (sender as Button).DataContext as Order_Meal;
             if (selectedclient.StatusId == 1)
             {
-                App.DB.Order_Meal.Remove(selectedclient);
-                App.DB.SaveChanges();
+                 MessageBoxResult result = MessageBox.Show($"Уверены что хотите удалить {selectedclient.Meal.Name}?", "Подтверждение.",  MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    App.DB.Order_Meal.Remove(selectedclient);
+                    App.DB.SaveChanges();
+                }
+               
                 Update();
             }
             else
