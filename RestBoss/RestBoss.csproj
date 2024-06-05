@@ -152,6 +152,9 @@
     <Compile Include="Components\Customer.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Components\d.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Components\Deliverer.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -202,9 +205,6 @@
     </Compile>
     <Compile Include="Components\PartialClass\Employee.cs" />
     <Compile Include="Components\RequestStatus.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Components\Restaurant.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Components\StatusOrder.cs">

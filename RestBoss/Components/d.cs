@@ -12,7 +12,7 @@ namespace RestBoss.Components
     using System;
     using System.Collections.Generic;
     
-    public partial class Restaurant
+    public partial class d
     {
         public int ID { get; set; }
         public string Addres { get; set; }

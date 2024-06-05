@@ -17,7 +17,7 @@ namespace RestBoss.Components
         public Nullable<int> MealID { get; set; }
         public Nullable<int> OrderID { get; set; }
         public int ID { get; set; }
-        public int Count { get; set; }
+        public Nullable<int> Count { get; set; }
         public Nullable<int> StatusId { get; set; }
     
         public virtual Meal Meal { get; set; }
