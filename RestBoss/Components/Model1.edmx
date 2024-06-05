@@ -564,7 +564,7 @@
           <EntitySet Name="Order" EntityType="RestarauntDeliveryModel.Order" />
           <EntitySet Name="Order_Meal" EntityType="RestarauntDeliveryModel.Order_Meal" />
           <EntitySet Name="RequestStatus" EntityType="RestarauntDeliveryModel.RequestStatus" />
-          <EntitySet Name="Restaurant" EntityType="RestarauntDeliveryModel.Restaurant" />
+          <EntitySet Name="Restaurant" EntityType="RestarauntDeliveryModel.d" />
           <EntitySet Name="Status_Order_Meal" EntityType="RestarauntDeliveryModel.Status_Order_Meal" />
           <EntitySet Name="StatusOrder" EntityType="RestarauntDeliveryModel.StatusOrder" />
           <EntitySet Name="Supplier" EntityType="RestarauntDeliveryModel.Supplier" />
@@ -827,7 +827,7 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Meal" Relationship="RestarauntDeliveryModel.FK_Meal_RequestStatus" FromRole="RequestStatus" ToRole="Meal" />
         </EntityType>
-        <EntityType Name="Restaurant">
+        <EntityType Name="d">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
@@ -1292,7 +1292,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Restaurant">
-            <EntityTypeMapping TypeName="RestarauntDeliveryModel.Restaurant">
+            <EntityTypeMapping TypeName="RestarauntDeliveryModel.d">
               <MappingFragment StoreEntitySet="Restaurant">
                 <ScalarProperty Name="Addres" ColumnName="Addres" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
