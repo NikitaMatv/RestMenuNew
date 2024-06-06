@@ -171,11 +171,10 @@ namespace RestBoss.Pages
             
             save.Filter = "Excel (*.xls)|*.xls";
             save.ShowDialog();
-            if (save.FileName == null)
+            if (save.FileName == string.Empty)
             {
                 return;
             }
-           
             foglio = save.FileName;
             mWorkbook.SaveAs(foglio, System.Reflection.Missing.Value, System.Reflection.Missing.Value, System.Reflection.Missing.Value, System.Reflection.Missing.Value, System.Reflection.Missing.Value, Excel.XlSaveAsAccessMode.xlExclusive, System.Reflection.Missing.Value, System.Reflection.Missing.Value, System.Reflection.Missing.Value, System.Reflection.Missing.Value, System.Reflection.Missing.Value);          
             MessageBoxResult result = MessageBox.Show("Открыть фаил?","Открыть",MessageBoxButton.YesNo, MessageBoxImage.Information);
