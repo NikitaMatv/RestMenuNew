@@ -132,8 +132,8 @@ namespace RestBoss.Pages
             ScottPlot.Plot myPlot3 = new ScottPlot.Plot();
             IEnumerable<Order_Meal> result = App.DB.Order_Meal.Where(x => x.Order.DataTimeEnd >= dates.Date && x.Order.DataTimeEnd < DateTime.Now).ToList() ;
             var results = result.GroupBy(x => x.Meal, x => x.Count)
-                  .Select(g => new ExlMeal { meal = g.Key, Sum = g.Sum() });
-            import = results;
+                  .Select(g => new ExlMeal { meal = g.Key, Sum = (int)g.Sum() });
+            import = results.OrderByDescending(x=>x.Sum);
             DateSelect = $"{DateTime.Now.Date - dates.Date} - {DateTime.Now.Date.ToShortDateString()}";
             LbMeal.ItemsSource = results.ToList();
         }

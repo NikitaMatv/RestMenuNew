@@ -32,6 +32,7 @@ namespace RestBoss.Components
         public virtual DbSet<DiscountCode> DiscountCode { get; set; }
         public virtual DbSet<Employee> Employee { get; set; }
         public virtual DbSet<EmployeeRole> EmployeeRole { get; set; }
+        public virtual DbSet<Funktoin> Funktoin { get; set; }
         public virtual DbSet<Ingridient> Ingridient { get; set; }
         public virtual DbSet<Meal> Meal { get; set; }
         public virtual DbSet<Meal_Ingridient> Meal_Ingridient { get; set; }
@@ -39,7 +40,7 @@ namespace RestBoss.Components
         public virtual DbSet<Order> Order { get; set; }
         public virtual DbSet<Order_Meal> Order_Meal { get; set; }
         public virtual DbSet<RequestStatus> RequestStatus { get; set; }
-        public virtual DbSet<d> Restaurant { get; set; }
+        public virtual DbSet<Restaurant> Restaurant { get; set; }
         public virtual DbSet<Status_Order_Meal> Status_Order_Meal { get; set; }
         public virtual DbSet<StatusOrder> StatusOrder { get; set; }
         public virtual DbSet<Supplier> Supplier { get; set; }

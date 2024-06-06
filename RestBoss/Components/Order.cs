@@ -33,11 +33,13 @@ namespace RestBoss.Components
         public Nullable<int> DiscountId { get; set; }
         public Nullable<int> DiscountPrice { get; set; }
         public Nullable<int> CustomerId { get; set; }
+        public Nullable<int> FunktionId { get; set; }
     
         public virtual Customer Customer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Delivery> Delivery { get; set; }
         public virtual DiscountCode DiscountCode { get; set; }
+        public virtual Funktoin Funktoin { get; set; }
         public virtual Options Options { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order_Meal> Order_Meal { get; set; }

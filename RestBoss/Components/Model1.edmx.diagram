@@ -5,27 +5,28 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="22564f69a13c45819994649f5abbe8d2" Name="Diagram1" ZoomLevel="93">
-        <EntityTypeShape EntityType="RestarauntDeliveryModel.Cotegories" Width="1.5" PointX="9.875" PointY="9.875" />
-        <EntityTypeShape EntityType="RestarauntDeliveryModel.Customer" Width="1.5" PointX="5.5" PointY="9.25" />
-        <EntityTypeShape EntityType="RestarauntDeliveryModel.Deliverer" Width="1.5" PointX="5.625" PointY="4" />
-        <EntityTypeShape EntityType="RestarauntDeliveryModel.Delivery" Width="1.5" PointX="7.5" PointY="5" />
-        <EntityTypeShape EntityType="RestarauntDeliveryModel.DiscountCode" Width="1.5" PointX="1.875" PointY="8.75" />
-        <EntityTypeShape EntityType="RestarauntDeliveryModel.Employee" Width="1.5" PointX="3.5" PointY="4.25" />
-        <EntityTypeShape EntityType="RestarauntDeliveryModel.EmployeeRole" Width="1.5" PointX="1.625" PointY="5.375" />
-        <EntityTypeShape EntityType="RestarauntDeliveryModel.Ingridient" Width="1.5" PointX="9.75" PointY="3.5" />
-        <EntityTypeShape EntityType="RestarauntDeliveryModel.Meal" Width="1.5" PointX="11.625" PointY="3.75" />
-        <EntityTypeShape EntityType="RestarauntDeliveryModel.Meal_Ingridient" Width="1.5" PointX="11.625" PointY="7.5" />
-        <EntityTypeShape EntityType="RestarauntDeliveryModel.Options" Width="1.5" PointX="5.625" PointY="1.75" />
-        <EntityTypeShape EntityType="RestarauntDeliveryModel.Order" Width="1.5" PointX="7.5" PointY="8.125" />
-        <EntityTypeShape EntityType="RestarauntDeliveryModel.Order_Meal" Width="1.5" PointX="9.875" PointY="6.5" />
-        <EntityTypeShape EntityType="RestarauntDeliveryModel.RequestStatus" Width="1.5" PointX="11.75" PointY="9.875" />
-        <EntityTypeShape EntityType="RestarauntDeliveryModel.d" Width="1.5" PointX="3.375" PointY="1.875" />
-        <EntityTypeShape EntityType="RestarauntDeliveryModel.Status_Order_Meal" Width="1.5" PointX="7.5" PointY="2.375" />
-        <EntityTypeShape EntityType="RestarauntDeliveryModel.StatusOrder" Width="1.5" PointX="3.625" PointY="9.375" />
-        <EntityTypeShape EntityType="RestarauntDeliveryModel.Supplier" Width="1.5" PointX="9.75" PointY="0.75" />
-        <EntityTypeShape EntityType="RestarauntDeliveryModel.Supplier_ingridient" Width="1.5" PointX="11.625" PointY="1.375" />
-        <EntityTypeShape EntityType="RestarauntDeliveryModel.sysdiagrams" Width="1.5" PointX="24.125" PointY="13.75" />
-        <EntityTypeShape EntityType="RestarauntDeliveryModel.Tables" Width="1.5" PointX="5.625" PointY="6.5" />
+        <EntityTypeShape EntityType="RestarauntDeliveryModel.Cotegories" Width="1.5" PointX="5.25" PointY="22.5" />
+        <EntityTypeShape EntityType="RestarauntDeliveryModel.Customer" Width="1.5" PointX="5.25" PointY="0.75" />
+        <EntityTypeShape EntityType="RestarauntDeliveryModel.Deliverer" Width="1.5" PointX="5.25" PointY="4.75" />
+        <EntityTypeShape EntityType="RestarauntDeliveryModel.Delivery" Width="1.5" PointX="7.5" PointY="5.75" />
+        <EntityTypeShape EntityType="RestarauntDeliveryModel.DiscountCode" Width="1.5" PointX="5.25" PointY="15.375" />
+        <EntityTypeShape EntityType="RestarauntDeliveryModel.Employee" Width="1.5" PointX="3" PointY="5.125" />
+        <EntityTypeShape EntityType="RestarauntDeliveryModel.EmployeeRole" Width="1.5" PointX="0.75" PointY="6.125" />
+        <EntityTypeShape EntityType="RestarauntDeliveryModel.Funktoin" Width="1.5" PointX="5.25" PointY="13" />
+        <EntityTypeShape EntityType="RestarauntDeliveryModel.Ingridient" Width="1.5" PointX="9.75" PointY="4.125" />
+        <EntityTypeShape EntityType="RestarauntDeliveryModel.Meal" Width="1.5" PointX="7.5" PointY="22.75" />
+        <EntityTypeShape EntityType="RestarauntDeliveryModel.Meal_Ingridient" Width="1.5" PointX="12" PointY="14.125" />
+        <EntityTypeShape EntityType="RestarauntDeliveryModel.Options" Width="1.5" PointX="5.25" PointY="18.25" />
+        <EntityTypeShape EntityType="RestarauntDeliveryModel.Order" Width="1.5" PointX="7.5" PointY="8.75" />
+        <EntityTypeShape EntityType="RestarauntDeliveryModel.Order_Meal" Width="1.5" PointX="9.75" PointY="10" />
+        <EntityTypeShape EntityType="RestarauntDeliveryModel.RequestStatus" Width="1.5" PointX="5.25" PointY="24.875" />
+        <EntityTypeShape EntityType="RestarauntDeliveryModel.Restaurant" Width="1.5" PointX="0.75" PointY="2.625" />
+        <EntityTypeShape EntityType="RestarauntDeliveryModel.Status_Order_Meal" Width="1.5" PointX="7.5" PointY="3.125" />
+        <EntityTypeShape EntityType="RestarauntDeliveryModel.StatusOrder" Width="1.5" PointX="5.25" PointY="10.625" />
+        <EntityTypeShape EntityType="RestarauntDeliveryModel.Supplier" Width="1.5" PointX="9.75" PointY="1.375" />
+        <EntityTypeShape EntityType="RestarauntDeliveryModel.Supplier_ingridient" Width="1.5" PointX="12" PointY="4.25" />
+        <EntityTypeShape EntityType="RestarauntDeliveryModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="10.625" />
+        <EntityTypeShape EntityType="RestarauntDeliveryModel.Tables" Width="1.5" PointX="5.25" PointY="7.25" />
         <AssociationConnector Association="RestarauntDeliveryModel.FK_Meal_Cotegories" />
         <AssociationConnector Association="RestarauntDeliveryModel.FK_Order_Customer" />
         <AssociationConnector Association="RestarauntDeliveryModel.FK_Deliverer_Employee" />
@@ -35,6 +36,7 @@
         <AssociationConnector Association="RestarauntDeliveryModel.FK_Order_DiscountCode" />
         <AssociationConnector Association="RestarauntDeliveryModel.FK_Employee_EmployeeRole" />
         <AssociationConnector Association="RestarauntDeliveryModel.FK_Tables_Employee" />
+        <AssociationConnector Association="RestarauntDeliveryModel.FK_Order_Funktoin" />
         <AssociationConnector Association="RestarauntDeliveryModel.FK_Meal_Ingridient_Ingridient" />
         <AssociationConnector Association="RestarauntDeliveryModel.FK_Supplier_ingridient_Ingridient" />
         <AssociationConnector Association="RestarauntDeliveryModel.FK_Meal_Ingridient_Meal" />
