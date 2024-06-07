@@ -28,9 +28,10 @@ namespace RestShev.Pages
         public AddEditMealPage(Meal meal)
         {
             InitializeComponent();
-            CbCotegories.ItemsSource = App.DB.Cotegories.ToList();
             contextmeal = meal;
             DataContext = contextmeal;
+            CbCotegories.ItemsSource = App.DB.Cotegories.ToList();
+            CbCotegories.SelectedIndex = 0;
         }
 
         private void BtImage_Click(object sender, RoutedEventArgs e)
@@ -67,27 +68,22 @@ namespace RestShev.Pages
 
         private void SaveBt_Click(object sender, RoutedEventArgs e)
         {
-            if (contextmeal.Description.Trim() == string.Empty)
+            if (contextmeal.Description == string.Empty || contextmeal.Description == null)
             {
                 MessageBox.Show("Заполните описание.");
                 return;
             }
-            if (contextmeal.Name.Trim() == string.Empty)
+            if (contextmeal.Name == string.Empty || contextmeal.Name== null)
             {
                 MessageBox.Show("Заполните название.");
                 return;
             }
-            if (contextmeal.Images == null)
+            if (contextmeal.Images == null )
             {
                 MessageBox.Show("Заполните фотогравию.");
                 return;
             }
-            if (contextmeal.CotegoriesID == null)
-            {
-                MessageBox.Show("Выбирите категорию.");
-                return;
-            }
-            if (contextmeal.Price == null)
+            if (contextmeal.Price == null || contextmeal.Price == null)
             {
                 MessageBox.Show("Заполните цена.");
                 return;
