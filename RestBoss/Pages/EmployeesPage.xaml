@@ -63,8 +63,7 @@
                             </StackPanel>
                             <StackPanel Margin="0 0 0 0" Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
                                 <TextBlock Padding="3" FontSize="25" FontWeight="Bold"  Text="Стаж: "></TextBlock>
-                                <TextBlock Padding="0 3 0 0" FontSize="25" Text="{Binding staj,StringFormat='dd'}" Margin="0 0 10 0"></TextBlock>
-                                <TextBlock Padding="3" FontSize="25"  Text="д. "></TextBlock>
+                                <TextBlock Padding="0 3 0 0" FontSize="25" Text="{Binding staj}" Margin="0 0 10 0"></TextBlock>
                             </StackPanel>
                             <StackPanel Margin="3" Grid.Row="1" Orientation="Horizontal">
                                 <TextBlock Padding="3" FontSize="20" FontWeight="Bold"  Text="Email: "></TextBlock>
