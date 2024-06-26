@@ -16,12 +16,12 @@
         <ListBox VerticalAlignment="Top" Background="Transparent" Grid.ColumnSpan="2" Grid.Row="1" Height="600" BorderBrush="Transparent"  x:Name="LbCart" HorizontalContentAlignment="Stretch" AlternationCount="2">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Horizontal" Width="910"></WrapPanel>
+                    <WrapPanel Orientation="Horizontal" Width="1080"></WrapPanel>
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Border Background="#D9D9D9" BorderThickness="2" Width="410" BorderBrush="Black">
+                    <Border Background="#D9D9D9" BorderThickness="2" Width="480" BorderBrush="Black">
                         <Border.ContextMenu>
                             <ContextMenu>
                                 <MenuItem Header="Выполнен" x:Name="BtCompl" Click="BtCompl_Click"></MenuItem>
@@ -38,7 +38,7 @@
                                 </Style>
                             </Grid.Resources>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="180"></ColumnDefinition>
+                                <ColumnDefinition Width="265"></ColumnDefinition>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <StackPanel Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Orientation="Vertical" Margin="10" Grid.ColumnSpan="3">
@@ -60,7 +60,7 @@
                                     <TextBlock FontSize="18" FontWeight="Bold" Visibility="{Binding visabilityTable}"  Text="{Binding Order.TableId,StringFormat='Стол №{0}'}"></TextBlock>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock FontSize="18" Text="{Binding Order.DateTimesSt,StringFormat='Дата заказа: dd.MM hh:mm'}"></TextBlock>
+                                    <TextBlock FontSize="18" Text="{Binding Order.DateTimesSt,StringFormat='Время заказа: hh:mm'}"></TextBlock>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock FontSize="18" Text="{Binding Order.Options.Name}"></TextBlock>

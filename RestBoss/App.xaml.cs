@@ -14,7 +14,7 @@ namespace RestBoss
     /// </summary>
     public partial class App : Application
     {
-        public static RestarauntDeliveryEntities1 DB = new RestarauntDeliveryEntities1();
+        public static DelDBEntities DB = new DelDBEntities();
         public static Employee LoggedBoss;
     }
 }

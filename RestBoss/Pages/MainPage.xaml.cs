@@ -135,7 +135,7 @@ namespace RestBoss.Pages
                   .Select(g => new ExlMeal { meal = g.Key, Sum = (int)g.Sum() });
             import = results.OrderByDescending(x=>x.Sum);
             DateSelect = $"{DateTime.Now.Date - dates.Date} - {DateTime.Now.Date.ToShortDateString()}";
-            LbMeal.ItemsSource = results.ToList();
+            LbMeal.ItemsSource = results.OrderByDescending(x=>x.Sum).ToList();
         }
         private void CbTimes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

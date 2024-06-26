@@ -51,11 +51,11 @@
                 </ComboBox>
                 <Button x:Name="BtImport" Margin="550 0 0 0" Click="BtImport_Click">Выгрузить</Button>
             </StackPanel>
-            <StackPanel Grid.Row="1"  Grid.ColumnSpan="2" Background="#D9D9D9" Width="916">
-                <ListView x:Name="LbMeal">
+            <StackPanel Grid.Row="1"  Grid.ColumnSpan="2" Background="#D9D9D9"  Width="916">
+                <ListView x:Name="LbMeal" Height="230"  ScrollViewer.HorizontalScrollBarVisibility="Visible">
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <WrapPanel Height="290"  Orientation="Horizontal"></WrapPanel>
+                            <WrapPanel   Orientation="Horizontal"></WrapPanel>
                         </ItemsPanelTemplate>
                     </ListView.ItemsPanel>
                     <ListView.ItemTemplate>

@@ -14,7 +14,7 @@ namespace RestShev
     /// </summary>
     public partial class App : Application
     {
-        public static RestarauntDeliveryEntities DB = new RestarauntDeliveryEntities();
+        public static DelDBEntities1 DB = new DelDBEntities1();
         public static Employee LoggedEmployee;
         public static bool IsAutorizate = false;
     }

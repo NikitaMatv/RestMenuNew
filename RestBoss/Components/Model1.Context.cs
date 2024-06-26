@@ -13,10 +13,10 @@ namespace RestBoss.Components
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class RestarauntDeliveryEntities1 : DbContext
+    public partial class DelDBEntities : DbContext
     {
-        public RestarauntDeliveryEntities1()
-            : base("name=RestarauntDeliveryEntities1")
+        public DelDBEntities()
+            : base("name=DelDBEntities")
         {
         }
     
@@ -45,7 +45,6 @@ namespace RestBoss.Components
         public virtual DbSet<StatusOrder> StatusOrder { get; set; }
         public virtual DbSet<Supplier> Supplier { get; set; }
         public virtual DbSet<Supplier_ingridient> Supplier_ingridient { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Tables> Tables { get; set; }
     }
 }
